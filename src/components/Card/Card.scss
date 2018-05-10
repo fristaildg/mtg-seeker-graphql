@@ -1,0 +1,37 @@
+.card-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  background-blend-mode: multiply;
+  background-size: 100% 100%;
+  padding: 20px;
+  color: black;
+
+  &.White {
+    background-image: url('./img/white.jpg');
+  }
+  
+  &.Red {
+    background-image: url('./img/red.jpg');
+  }
+  
+  &.Black {
+    background-image: url('./img/black.jpg');
+  }
+  
+  &.Green {
+    background-image: url('./img/green.jpg');
+  }
+  
+  &.Blue {
+    background-image: url('./img/blue.jpg');
+  }
+}
+
+.card-name {
+  margin: 0;
+  font-size: 15px;
+}
+
+span,
+p {
+  font-size: 12px;
+}

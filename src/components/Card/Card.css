@@ -3,35 +3,22 @@
   background-blend-mode: multiply;
   background-size: 100% 100%;
   padding: 20px;
-  color: black;
-}
-
-.White {
-  background-image: url('./img/white.jpg');
-}
-
-.Red {
-  background-image: url('./img/red.jpg');
-}
-
-.Black {
-  background-image: url('./img/black.jpg');
-}
-
-.Green {
-  background-image: url('./img/green.jpg');
-}
-
-.Blue {
-  background-image: url('./img/blue.jpg');
-}
+  color: black; }
+  .card-container.White {
+    background-image: url("./img/white.jpg"); }
+  .card-container.Red {
+    background-image: url("./img/red.jpg"); }
+  .card-container.Black {
+    background-image: url("./img/black.jpg"); }
+  .card-container.Green {
+    background-image: url("./img/green.jpg"); }
+  .card-container.Blue {
+    background-image: url("./img/blue.jpg"); }
 
 .card-name {
   margin: 0;
-  font-size: 15px;
-}
+  font-size: 15px; }
 
 span,
 p {
-  font-size: 12px;
-}
+  font-size: 12px; }
