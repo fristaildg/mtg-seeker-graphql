@@ -4,10 +4,10 @@ import queryTypes from './queryTypes';
 import './SearchForm.css';
 import {connect} from 'react-redux';
 import {cardDataFetch} from '../../actions/cardData';
+import {getUsers} from '../../actions/users';
 
-// const axiosMtgGraphQl = axios.create({
-//   baseURL: 'https://mtgql.com/v1'
-// });
+const queryURL = 'https://mtgql.com/v1';
+const usersQueryURL = 'https://us-west-2.api.scaphold.io/graphql/mtg-ql';
 
 class SearchForm extends Component {
   state = {
@@ -34,56 +34,19 @@ class SearchForm extends Component {
   }
 
   onFetch = () => {
-    const {cardDataFetch, cardData, onFetchCardData} = this.props;
+    const {cardDataFetch, getUsers} = this.props;
     const {searchTerm} = this.state;
 
     cardDataFetch(
-      'https://mtgql.com/v1',
-      {query: queryTypes.GET_CARD_BY_CARD_TYPE(searchTerm)}      
+      queryURL,
+      {query: queryTypes.GET_CARD_BY_NAME(searchTerm)}
     )
-    onFetchCardData(cardData);
 
-    // this.setState({isLoading: true});
-    // axiosMtgGraphQl
-    //   .post('', { query: queryTypes.GET_CARD_BY_CARD_TYPE(searchTerm)})
-    //   .then(result => {
-    //     if(!result) {
-    //       this.setState({hasError: true});
-    //     }
-    //     this.setState({
-    //       isLoading: false,
-    //       cardData: result.data.data.Cards.edges
-    //     });
-    //     if(this.state.cardData.length > 0) {
-    //       onFetchCardData(this.state.cardData);
-    //       this.setState({
-    //         lastCursor: result.data.data.Cards.pageInfo.endCursor,
-    //         hasNextPage: result.data.data.Cards.pageInfo.hasNextPage
-    //       });
-    //     }
-    //   })
-    //   .catch(() => this.setState({hasError: true}));
+    getUsers(
+      usersQueryURL,
+      {query: queryTypes.GET_USERS()}
+    )
   }
-
-  // onFetchMore = () => {
-  //   const {onFetchCardData} = this.props;
-  //   const {searchTerm} = this.state;
-
-  //   // this.setState({isLoading: true});
-  //   // axiosMtgGraphQl
-  //   //   .post('', { query: queryTypes.GET_CARD_BY_CARD_TYPE(searchTerm, this.state.lastCursor)})
-  //   //   .then(result => {
-  //   //     this.setState({
-  //   //       isLoading: false,
-  //   //       cardData: [...this.state.cardData, ...result.data.data.Cards.edges]
-  //   //     });
-  //   //     onFetchCardData(this.state.cardData);
-  //   //     this.setState({
-  //   //       lastCursor: result.data.data.Cards.pageInfo.endCursor,
-  //   //       hasNextPage: result.data.data.Cards.pageInfo.hasNextPage
-  //   //     });
-  //   //   });
-  // }
 
   render() {
     const {
@@ -141,13 +104,15 @@ class SearchForm extends Component {
 const mapStateToProps = (state) => {
   return {
     cardData: state.cardData,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    users: state.users
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cardDataFetch: (url, query) => dispatch(cardDataFetch(url, query))
+    cardDataFetch: (url, query) => dispatch(cardDataFetch(url, query)),
+    getUsers: (url, query) => dispatch(getUsers(url, query))
   };
 };
 

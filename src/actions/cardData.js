@@ -21,12 +21,10 @@ export const cardDataFetch = (url, query) => {
     axios.post(url, query)
       .then(result => {
         dispatch(cardDataIsLoading(false));
-        return result;
-      })
-      .then((cardData) => {
-        dispatch(cardDataFetchSuccess(cardData.data.data.Cards.edges));
-      })
-      
+        console.log(result);
+        dispatch(cardDataFetchSuccess(result.data.data.Cards.edges));
+      }
+    )      
   }
 };
 

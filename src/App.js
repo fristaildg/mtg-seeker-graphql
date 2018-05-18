@@ -4,23 +4,16 @@ import Header from './components/Header';
 import SearchForm from './components/SearchForm';
 import CardGrid from './components/CardGrid';
 import Card from './components/Card';
+import {connect} from 'react-redux';
 
 class App extends Component {
-  state = {
-    cardData: []
-  }
-
-  handleCardData = (data, lastCursor) => {
-    this.setState({cardData: data});
-  }
-
   render() {
-    const {cardData} = this.state;
+    const {cardData} = this.props;
 
     return (
       <div className="App">
         <Header/>
-        <SearchForm onFetchCardData={this.handleCardData}/>
+        <SearchForm/>
         {
           cardData.length <= 0 ? (
             <p>
@@ -43,4 +36,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    cardData: state.cardData
+  }
+}
+
+export default connect(mapStateToProps)(App);

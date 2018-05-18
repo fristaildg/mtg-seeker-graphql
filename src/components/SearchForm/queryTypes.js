@@ -53,6 +53,22 @@ const queryTypes = {
         }
       }
     `
+  },
+  GET_USERS: () => {
+    return `
+      {
+        viewer {
+          allUsers {
+            edges {
+              node {
+                id
+                username
+              }
+            }
+          }
+        }
+      }
+    `
   }
 }
 
